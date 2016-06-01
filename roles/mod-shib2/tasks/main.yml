@@ -29,25 +29,25 @@
   copy:
     src: roles/shib3idp/files/metadata-providers.xml
     dest: /opt/shibboleth-idp/conf/metadata-providers.xml
-  when: pre_t3 is defined
+  when: pre_t is defined and pre_t > 2
   
 - name: Add IdP Metadata to Shibboleth SP
   get_url:
     url: https://idp.example.org/idp/shibboleth
     dest: /etc/shibboleth/metadata/idp.example.org-metadata.xml
     validate_certs: no
-  when: pre_t3 is defined
+  when: pre_t is defined and pre_t > 2
 
 - name: Enable full attribute-map.xml
   copy:
     src: roles/shib3idp/files/attribute-map.xml
     dest: /etc/shibboleth/attribute-map.xml
-  when: pre_t3 is defined
+  when: pre_t is defined and pre_t > 2
 
 - name: Restart shibd
   service: name=shibd state=restarted enabled=yes
-  when: pre_t3 is defined
+  when: pre_t is defined and pre_t > 2
 
 - name: Restart tomcat7
   service: name=tomcat7 state=restarted enabled=yes
-  when: pre_t3 is defined
+  when: pre_t is defined and pre_t > 2

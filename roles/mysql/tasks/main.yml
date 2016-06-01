@@ -19,3 +19,5 @@
 
 - name: Create Shibboleth Database
   shell: mysql -u root --password=password < roles/mysql/files/shibboleth.sql
+  when: pre_t is defined and pre_t > 2
+  
