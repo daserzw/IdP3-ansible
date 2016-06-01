@@ -13,6 +13,8 @@
     ldap_pw: password
     idp_pw: password
     mysql_pw: password
+    idpdb_user: shibboleth
+    idpdb_pw: password
     tomcat_admin_pw: password
     tomcat_manager_pw: password
   roles:

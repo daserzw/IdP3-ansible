@@ -9,20 +9,22 @@
 - name: Stat Shibboleth IdP source dir in /opt 
   stat: path=/opt/shibboleth-identity-provider-3.2.1
   register: shib_dir_source
-  when: pre_t is defined and pre_t > 1 
   
 - name: Unarchive Shibboleth IdP
   unarchive: src=/opt/shibboleth-identity-provider-3.2.1.tar.gz dest=/opt
   when: shib_dir_source.stat.exists == False and pre_t is defined and pre_t > 1 
-  
+
 - name: Cleanup Shibboleth IdP Install
   file: path=/opt/shibboleth-idp state=absent
   when: cleanup is defined
+
+# Tasks to be executed for T2
   
 - name: Stat Shibboleth IdP dest dir in /opt
   stat: path=/opt/shibboleth-idp
   register: shib_dir_dest
-
+  when: pre_t is defined and pre_t > 1 
+  
 - name: Prepare properties for Shibboleth IdP install
   template: 
     src: roles/shib3idp/templates/shib-install.properties 
@@ -75,7 +77,7 @@
     dest: "{{ idp_path }}/conf/logback.xml"
   when: pre_t is defined and pre_t > 1 
 
-- name: Configure saml-nameid.properties (persistentId)
+- name: Configure saml-nameid.properties (dataStore and persistentId)
   template: 
     src: roles/shib3idp/templates/saml-nameid.properties 
     dest: "{{ idp_path }}/conf/saml-nameid.properties" 
@@ -92,19 +94,14 @@
     src: roles/shib3idp/files/relying-party.xml
     dest:  "{{ idp_path }}/relying-party.xml"
   when: pre_t is defined and pre_t > 1 
-  
-- name: Add SP sp.example.org Metadata to Shibboleth IdP
-  get_url:
-    url: https://sp.example.org/Shibboleth.sso/Metadata
-    dest: /opt/shibboleth-idp/metadata/sp.example.org-metadata.xml
-    validate_certs: no
-  when: pre_t is defined and pre_t > 2 
 
-- name: Configure SP Metadata in Shibboleth IdP
+- name: Configure global.xml (dataStore and persistentId)
   copy:
-    src: roles/shib3idp/files/metadata-providers.xml
-    dest: /opt/shibboleth-idp/conf/metadata-providers.xml
-  when: pre_t is defined and pre_t > 2 
+    src: roles/shib3idp/files/global.xml
+    dest:  "{{ idp_path }}/global.xml"
+  when: pre_t is defined and pre_t > 1 
+
+# Tasks to be executed for T3
   
 - name: Configure IdP attribute-filter.xml 
   copy: 
