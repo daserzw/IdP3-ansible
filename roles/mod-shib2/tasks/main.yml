@@ -1,0 +1,53 @@
+- name: Create Shibboleth SP keys
+  shell: /usr/sbin/shib-keygen -h sp.example.org -e https://sp.example.org/shibboleth 
+  args:
+    creates: /etc/shibboleth/sp-key.pem
+
+- name: Create metadata directory for IdP metadata
+  file: name=/etc/shibboleth/metadata state=directory
+ 
+- name: Configure Shibboleth SP
+  copy:
+    src: roles/mod-shib2/files/shibboleth2.xml
+    dest: /etc/shibboleth/shibboleth2.xml
+  
+- name: Configure Shibboleth SP Attribute Map
+  copy:
+    src: roles/mod-shib2/files/attribute-map.xml
+    dest: /etc/shibboleth/attribute-map.xml
+
+- name: Restart shibd
+  service: name=shibd state=restarted enabled=yes
+
+- name: Add SP Metadata to Shibboleth IdP
+  get_url:
+    url: https://sp.example.org/Shibboleth.sso/Metadata
+    dest: /opt/shibboleth-idp/metadata/sp.example.org-metadata.xml
+    validate_certs: no
+
+- name: Configure SP Metadata in Shibboleth IdP
+  copy:
+    src: roles/shib3idp/files/metadata-providers.xml
+    dest: /opt/shibboleth-idp/conf/metadata-providers.xml
+  when: pre_t3 is defined
+  
+- name: Add IdP Metadata to Shibboleth SP
+  get_url:
+    url: https://idp.example.org/idp/shibboleth
+    dest: /etc/shibboleth/metadata/idp.example.org-metadata.xml
+    validate_certs: no
+  when: pre_t3 is defined
+
+- name: Enable full attribute-map.xml
+  copy:
+    src: roles/shib3idp/files/attribute-map.xml
+    dest: /etc/shibboleth/attribute-map.xml
+  when: pre_t3 is defined
+
+- name: Restart shibd
+  service: name=shibd state=restarted enabled=yes
+  when: pre_t3 is defined
+
+- name: Restart tomcat7
+  service: name=tomcat7 state=restarted enabled=yes
+  when: pre_t3 is defined

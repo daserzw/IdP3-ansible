@@ -1,0 +1,78 @@
+dn: ou=people,dc=example,dc=org
+ou: people
+objectClass: organizationalUnit
+
+dn: ou=system,dc=example,dc=org
+ou: system
+objectClass: organizationalUnit
+
+dn: ou=groups,dc=example,dc=org
+ou: groups
+objectClass: organizationalUnit
+
+dn: cn=search,ou=system,dc=example,dc=org
+objectClass: inetOrgPerson
+cn: search
+sn: Search
+givenName: Search
+userPassword: password
+
+dn: cn=lab,ou=groups,dc=example,dc=org
+cn: lab
+objectClass: groupOfNames
+member: uid=mario,ou=People,dc=example,dc=org
+member: uid=maria,ou=People,dc=example,dc=org
+
+dn: cn=projc,ou=groups,dc=example,dc=org
+cn: projc
+objectClass: groupOfNames
+member: uid=maria,ou=People,dc=example,dc=org
+
+dn: uid=mario,ou=People,dc=example,dc=org
+objectClass: inetOrgPerson
+objectClass: eduPerson
+uid: mario
+sn: Rossi
+givenName: Mario
+cn: Mario Rossi
+displayName: Mario scarpegrosse Rossi
+mail: mario.rossi@example.org
+userPassword: mariopw
+edupersonAffiliation: staff
+edupersonAffiliation: member
+
+dn: uid=maria,ou=People,dc=example,dc=org
+objectClass: inetOrgPerson
+objectClass: eduPerson
+uid: maria
+sn: Verdi
+givenName: Maria
+cn: Maria Verdi
+mail: maria.verdi@example.org
+userPassword: mariapw
+edupersonAffiliation: student
+edupersonAffiliation: member
+
+dn: uid=pino,ou=People,dc=example,dc=org
+objectClass: inetOrgPerson
+objectClass: eduPerson
+uid: pino
+sn: Verdi
+givenName: Pino
+cn: Pino Verdi
+mail: pino.verdi@example.org
+userPassword: pinopw
+edupersonAffiliation: staff
+edupersonAffiliation: member
+
+dn: uid=Pina,ou=People,dc=example,dc=org
+objectClass: inetOrgPerson
+objectClass: eduPerson
+uid: pina
+sn: Rossi
+givenName: Pina
+cn: Pina Verdi
+mail: pina.verdi@example.org
+userPassword: pinapw
+edupersonAffiliation: staff
+edupersonAffiliation: member

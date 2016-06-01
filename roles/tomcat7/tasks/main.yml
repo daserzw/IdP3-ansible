@@ -1,0 +1,11 @@
+- name: /etc/tomcat7/server.xml with AJP, NO 8080, and no autoDeploy
+  template: src=roles/tomcat7/templates/server.xml dest=/etc/tomcat7/server.xml
+
+- name: /etc/default/tomcat7 with urandom and 1512m heap mem
+  template: src=roles/tomcat7/templates/tomcat7 dest=/etc/default/tomcat7
+
+- name: Install JSTL-1.2 library
+  get_url: url=https://repo1.maven.org/maven2/jstl/jstl/1.2/jstl-1.2.jar dest=/usr/share/tomcat7/lib
+
+- name: Restart Tomcat7
+  service: name=tomcat7 state=restarted enabled=yes

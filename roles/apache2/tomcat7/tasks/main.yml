@@ -1,0 +1,11 @@
+- name: Install tomcat7 package
+  apt: name=tomcat7 state=present
+
+- name: /etc/tomcat7/server.xml with AJP, NO 8080, and no autoDeploy
+  template: src=roles/tomcat7/templates/server.xml dest=/etc/tomcat7/server.xml
+  
+- name: /etc/default/tomcat7 with urandom and 1024m heap mem
+  template: src=roles/tomcat7/templates/tomcat7 dest=/etc/default/tomcat7
+
+
+

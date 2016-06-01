@@ -1,0 +1,26 @@
+---
+- name: Install IdP Course VM
+  hosts: all
+  become: yes
+  vars:
+    domain: example.org
+    cert_path: /etc/ssl/certs
+    java_home: /usr/lib/jvm/java-7-openjdk-i386/jre
+    idp_dl_url: https://shibboleth.net/downloads/identity-provider/latest/shibboleth-identity-provider-3.2.1.tar.gz
+    idp_fqdn: idp.example.org
+    idp_path: /opt/shibboleth-idp
+    sp_fqdn: sp.example.org
+    ldap_pw: password
+    idp_pw: password
+    mysql_pw: password
+    tomcat_admin_pw: password
+    tomcat_manager_pw: password
+  roles:
+    - common
+    - tomcat7
+    - slapd
+    - shib3idp
+    - apache2
+    - mod-shib2
+    - mysql
+

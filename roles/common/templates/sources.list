@@ -1,0 +1,19 @@
+deb http://ba.mirror.garr.it/ubuntu/ trusty main restricted
+deb-src http://ba.mirror.garr.it/ubuntu/ trusty main restricted
+deb http://ba.mirror.garr.it/ubuntu/ trusty-updates main restricted
+deb-src http://ba.mirror.garr.it/ubuntu/ trusty-updates main restricted
+deb http://ba.mirror.garr.it/ubuntu/ trusty universe
+deb-src http://ba.mirror.garr.it/ubuntu/ trusty universe
+deb http://ba.mirror.garr.it/ubuntu/ trusty-updates universe
+deb-src http://ba.mirror.garr.it/ubuntu/ trusty-updates universe
+deb http://ba.mirror.garr.it/ubuntu/ trusty multiverse
+deb-src http://ba.mirror.garr.it/ubuntu/ trusty multiverse
+deb http://ba.mirror.garr.it/ubuntu/ trusty-updates multiverse
+deb-src http://ba.mirror.garr.it/ubuntu/ trusty-updates multiverse
+
+deb http://security.ubuntu.com/ubuntu trusty-security main restricted
+deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted
+deb http://security.ubuntu.com/ubuntu trusty-security universe
+deb-src http://security.ubuntu.com/ubuntu trusty-security universe
+deb http://security.ubuntu.com/ubuntu trusty-security multiverse
+deb-src http://security.ubuntu.com/ubuntu trusty-security multiverse

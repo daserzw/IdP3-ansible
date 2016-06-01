@@ -1,0 +1,47 @@
+- name: Check debconf for slapd entries
+  shell: (debconf-get-selections | grep -q -s slapd); echo $?
+  register: debconf
+  ignore_errors: yes
+
+- name: Set debconf slapd password1
+  debconf: name=slapd question="slapd/password1" value="{{ ldap_pw }}" vtype="password"
+  when: debconf.stdout == "1"
+    
+- name: Set debconf slapd password2
+  debconf: name=slapd question="slapd/password2" value="{{ ldap_pw }}" vtype="password"
+  when: debconf.stdout == "1"
+
+- name: Set debconf slapd domain
+  debconf: name=slapd question="slapd/domain" value="{{ domain }}" vtype="string"
+  when: debconf.stdout == "1"
+  
+- name: Install slapd
+  apt: name=slapd state=present
+
+- name: Add slapd user to ssl-cert group
+  user: name=openldap groups=ssl-cert
+
+- name: Install ldap-utils
+  apt: name=ldap-utils state=present
+
+- name: Apply Directory config ldif
+  command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f roles/slapd/files/directory-config.ldif"
+
+- name: Search Directory for eduperson schema
+  shell: "ldapsearch -QLLLY EXTERNAL -H ldapi:/// -b cn=schema,cn=config  cn=*eduperson dn"
+  register: eduperson_schema
+
+- name: Add eduperson-201602 schema ldif
+  command: "ldapadd -Y EXTERNAL -H ldapi:/// -f roles/slapd/files/eduperson-201602.ldif"
+  when: eduperson_schema.stdout == ""
+  
+- name: Search Directory for users
+  shell: "ldapsearch -QLLLY EXTERNAL -H ldapi:/// -b dc=example,dc=org objectClass=inetOrgPerson dn"
+  register: users_in_people_ou
+
+- name: Add Directory content ldif
+  command: "ldapadd -Y EXTERNAL -H ldapi:/// -f roles/slapd/files/directory-content.ldif"
+  when: users_in_people_ou.stdout == ""
+
+- name: Restart slapd
+  service: name=slapd state=restarted enabled=yes

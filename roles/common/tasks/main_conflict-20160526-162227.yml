@@ -1,0 +1,34 @@
+- name: Configure /etc/hosts
+  template: src={{ common_tmpls }}/hosts dest=/etc/hosts
+
+- name: Configure /etc/environment
+  template: src={{ common_tmpls }}/environment dest=/etc/environment
+
+- name: Add GARR apt sources
+  template: src={{ common_tmpls }}/sources.list dest=/etc/apt/sources.list
+
+- name: Update apt cache
+  apt: update_cache=yes 
+#  apt: update_cache=yes cache_valid_time=36000
+
+- name: Install apt packages
+  apt: name={{ item }} state=present
+  with_items:
+    - vim
+    - ntp
+    - apache2
+    - openjdk-7-jdk
+    - libjstl1.1-java
+    - tomcat7 
+
+- name: Install CA Certificate
+  copy: src={{ certs }}/cacert.pem dest=/etc/ssl/certs/cacert.pem
+
+- name: Install CA Key
+  copy: src={{ certs }}/cakey.pem dest=/etc/ssl/private mode=0600
+
+- name: Install IdP Certificate
+  copy: src={{ certs }}/idp.example.org-cert.pem dest=/etc/ssl/certs/idp.example.org-cert.pem
+
+- name: Install IdP Key
+  copy: src={{ certs }}/idp.example.org-key.pem dest=/etc/ssl/private/idp.example.org-key.pem group=ssl-cert mode=0640
