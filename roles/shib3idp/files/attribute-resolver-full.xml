@@ -30,7 +30,7 @@
     <!-- ========================================== -->
 
     <!-- Schema: Core schema attributes-->
-    <!--
+
     <resolver:AttributeDefinition xsi:type="ad:Simple" id="uid" sourceAttributeID="uid">
         <resolver:Dependency ref="myLDAP" />
         <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:uid" encodeType="false" />
@@ -144,10 +144,10 @@
         <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:initials" encodeType="false" />
         <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:2.5.4.43" friendlyName="initials" encodeType="false" />
     </resolver:AttributeDefinition>
-     -->
+
 
     <!-- Schema: inetOrgPerson attributes-->
-    <!--
+
     <resolver:AttributeDefinition xsi:type="ad:Simple" id="departmentNumber" sourceAttributeID="departmentNumber">
         <resolver:Dependency ref="myLDAP" />
         <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:departmentNumber" encodeType="false" />
@@ -183,10 +183,10 @@
         <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:preferredLanguage" encodeType="false" />
         <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:2.16.840.1.113730.3.1.39" friendlyName="preferredLanguage" encodeType="false" />
     </resolver:AttributeDefinition>
-    -->
+
 
     <!-- Schema: eduPerson attributes -->
-    <!--
+
     <resolver:AttributeDefinition xsi:type="ad:Simple" id="eduPersonAffiliation" sourceAttributeID="eduPersonAffiliation">
         <resolver:Dependency ref="myLDAP" />
         <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:eduPersonAffiliation" encodeType="false" />
@@ -240,7 +240,7 @@
         <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:eduPersonAssurance" encodeType="false" />
         <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.11" friendlyName="eduPersonAssurance" encodeType="false" />
     </resolver:AttributeDefinition>
-    -->
+
 
     <!-- ========================================== -->
     <!--      Data Connectors                       -->
