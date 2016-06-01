@@ -6,12 +6,6 @@
 - name: Create metadata directory for IdP metadata
   file: name=/etc/shibboleth/metadata state=directory
 
-- name: Add IdP Metadata to Shibboleth SP
-  get_url:
-    url: https://idp.example.org/idp/shibboleth
-    dest: /etc/shibboleth/metadata/idp.example.org-metadata.xml
-    validate_certs: no
-
 - name: Configure Shibboleth SP
   copy:
     src: roles/mod-shib2/files/shibboleth2.xml
@@ -22,15 +16,21 @@
     src: roles/mod-shib2/files/attribute-map.xml
     dest: /etc/shibboleth/attribute-map.xml
 
-- name: Restart shibd
-  service: name=shibd state=restarted enabled=yes
+# Tasks to be executed for T2
 
-# Tasks to be execute for T3
+- name: Add IdP Metadata to Shibboleth SP
+  get_url:
+    url: https://idp.example.org/idp/shibboleth
+    dest: /etc/shibboleth/metadata/idp.example.org-metadata.xml
+    validate_certs: no
+  when: pre_t is defined and pre_t > 1
   
 - name: Restart shibd
   service: name=shibd state=restarted enabled=yes
-  when: pre_t is defined and pre_t > 2
-
+  when: pre_t is defined and pre_t > 1
+  
+# Tasks to be executed for T3
+  
 - name: Add SP sp.example.org Metadata to Shibboleth IdP
   get_url:
     url: https://sp.example.org/Shibboleth.sso/Metadata
