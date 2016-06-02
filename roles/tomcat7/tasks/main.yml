@@ -16,7 +16,7 @@
 - name: Link mysql-java library
   file:
     src: /usr/share/java/mysql.jar
-    dest: /usr/share/tomcat7/mysql.jar
+    dest: /usr/share/tomcat7/lib/mysql.jar
     state: link
   
 - name: Restart Tomcat7
