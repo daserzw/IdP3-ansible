@@ -28,7 +28,8 @@
     - apache2
     - openjdk-7-jdk
     - libjstl1.1-java
-    - tomcat7 
+    - tomcat7
+    - libmysql-java
     - libapache2-mod-shib2
     - libapache2-mod-php5
   tags: online

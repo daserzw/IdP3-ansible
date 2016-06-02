@@ -49,13 +49,15 @@
     </util:map>
     -->
     
-    <bean id="shibboleth.MysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <bean id="MyDataSource" class="org.apache.commons.dbcp.BasicDataSource"
       p:driverClassName="com.mysql.jdbc.Driver"
       p:url="jdbc:mysql://localhost:3306/shibboleth?autoReconnect=true"
       p:username="{{ idpdb_user }}"
       p:password="{{ idpdb_pw }}"
+      p:maxActive="10"
       p:maxIdle="5"
       p:maxWait="15000"
+      p:testOnBorrow="true"
       p:validationQuery="select 1"
       p:validationQueryTimeout="5" />
     
@@ -66,7 +68,7 @@
     <bean id="shibboleth.JPAStorageService.entityManagerFactory"
 	  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="packagesToScan" value="org.opensaml.storage.impl"/>
-      <property name="dataSource" ref="shibboleth.MysqlDataSource"/>
+      <property name="dataSource" ref="MyDataSource"/>
       <property name="jpaVendorAdapter" ref="shibboleth.JPAStorageService.JPAVendorAdapter"/>
       <property name="jpaDialect">
         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
