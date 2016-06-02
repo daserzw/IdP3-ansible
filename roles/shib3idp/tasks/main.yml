@@ -18,8 +18,6 @@
   file: path=/opt/shibboleth-idp state=absent
   when: cleanup is defined
 
-# Tasks to be executed for T2
-  
 - name: Stat Shibboleth IdP dest dir in /opt
   stat: path=/opt/shibboleth-idp
   register: shib_dir_dest
@@ -101,8 +99,6 @@
     dest:  "{{ idp_path }}/conf/global.xml"
   when: pre_t is defined and pre_t > 1 
 
-# Tasks to be executed for T3
-  
 - name: Configure IdP attribute-filter.xml 
   copy: 
     src: roles/shib3idp/files/attribute-filter.xml
@@ -123,5 +119,5 @@
 
 - name: Restart Tomcat7
   service: name=tomcat7 state=restarted
-  when: pre_t is defined and pre_t > 2
+  when: pre_t is defined and pre_t > 1
 

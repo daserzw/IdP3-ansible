@@ -16,8 +16,6 @@
     src: roles/mod-shib2/files/attribute-map.xml
     dest: /etc/shibboleth/attribute-map.xml
 
-# Tasks to be executed for T2
-
 - name: Add IdP Metadata to Shibboleth SP
   get_url:
     url: https://idp.example.org/idp/shibboleth
@@ -28,8 +26,6 @@
 - name: Restart shibd
   service: name=shibd state=restarted enabled=yes
   when: pre_t is defined and pre_t > 1
-  
-# Tasks to be executed for T3
   
 - name: Add SP sp.example.org Metadata to Shibboleth IdP
   get_url:
