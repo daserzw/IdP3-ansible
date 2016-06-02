@@ -15,7 +15,7 @@
 
     <!-- Release some attributes to an SP. -->
     <AttributeFilterPolicy id="example1">
-        <PolicyRequirementRule xsi:type="Requester" value="https://sp.example.org/secure" />
+        <PolicyRequirementRule xsi:type="Requester" value="https://sp.example.org/shibboleth" />
 
         <AttributeRule attributeID="eduPersonPrincipalName">
             <PermitValueRule xsi:type="ANY" />
