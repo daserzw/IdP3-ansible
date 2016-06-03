@@ -1,15 +1,15 @@
-deb http://ba.mirror.garr.it/ubuntu/ trusty main restricted
-deb-src http://ba.mirror.garr.it/ubuntu/ trusty main restricted
-deb http://ba.mirror.garr.it/ubuntu/ trusty-updates main restricted
-deb-src http://ba.mirror.garr.it/ubuntu/ trusty-updates main restricted
-deb http://ba.mirror.garr.it/ubuntu/ trusty universe
-deb-src http://ba.mirror.garr.it/ubuntu/ trusty universe
-deb http://ba.mirror.garr.it/ubuntu/ trusty-updates universe
-deb-src http://ba.mirror.garr.it/ubuntu/ trusty-updates universe
-deb http://ba.mirror.garr.it/ubuntu/ trusty multiverse
-deb-src http://ba.mirror.garr.it/ubuntu/ trusty multiverse
-deb http://ba.mirror.garr.it/ubuntu/ trusty-updates multiverse
-deb-src http://ba.mirror.garr.it/ubuntu/ trusty-updates multiverse
+deb http://it.archive.ubuntu.com/ubuntu/ trusty main restricted
+deb-src http://it.archive.ubuntu.com/ubuntu/ trusty main restricted
+deb http://it.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+deb-src http://it.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+deb http://it.archive.ubuntu.com/ubuntu/ trusty universe
+deb-src http://it.archive.ubuntu.com/ubuntu/ trusty universe
+deb http://it.archive.ubuntu.com/ubuntu/ trusty-updates universe
+deb-src http://it.archive.ubuntu.com/ubuntu/ trusty-updates universe
+deb http://it.archive.ubuntu.com/ubuntu/ trusty multiverse
+deb-src http://it.archive.ubuntu.com/ubuntu/ trusty multiverse
+deb http://it.archive.ubuntu.com/ubuntu/ trusty-updates multiverse
+deb-src http://it.archive.ubuntu.com/ubuntu/ trusty-updates multiverse
 
 deb http://security.ubuntu.com/ubuntu trusty-security main restricted
 deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted
