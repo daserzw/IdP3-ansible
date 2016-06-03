@@ -22,11 +22,13 @@ cn: lab
 objectClass: groupOfNames
 member: uid=mario,ou=People,dc=example,dc=org
 member: uid=maria,ou=People,dc=example,dc=org
+member: uid=pina,ou=People,dc=example,dc=org
 
 dn: cn=projc,ou=groups,dc=example,dc=org
 cn: projc
 objectClass: groupOfNames
-member: uid=maria,ou=People,dc=example,dc=org
+member: uid=mario,ou=People,dc=example,dc=org
+member: uid=pina,ou=People,dc=example,dc=org
 
 dn: uid=mario,ou=People,dc=example,dc=org
 objectClass: inetOrgPerson
@@ -74,5 +76,5 @@ givenName: Pina
 cn: Pina Verdi
 mail: pina.verdi@example.org
 userPassword: pinapw
-edupersonAffiliation: staff
+edupersonAffiliation: faculty
 edupersonAffiliation: member

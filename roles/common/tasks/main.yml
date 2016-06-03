@@ -12,6 +12,14 @@
   tags: online
 #  apt: update_cache=yes cache_valid_time=36000
 
+- name: Uninstall slapd
+  apt: name=slapd state=absent purge=yes
+  when: cleanup is defined
+
+- name: Remove /var/lib/ldap
+  file: path=/var/lib/ldap state=absent
+  when: cleanup is defined
+
 - name: Uninstall libapache2-mod-shib2
   apt: name=libapache2-mod-shib2 state=absent purge=yes
   when: cleanup is defined
@@ -23,6 +31,7 @@
 - name: Install apt packages
   apt: name={{ item }} state=present
   with_items:
+    - html2text
     - vim
     - ntp
     - apache2
