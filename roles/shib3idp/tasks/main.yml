@@ -144,7 +144,7 @@
 - name: Configure IdP attribute-resolver.xml-pre_t4
   copy: 
     src: roles/shib3idp/files/attribute-resolver.xml-pre_t4
-    dest: "{{ idp_path }}/conf/attribute-resolver-full.xml"
+    dest: "{{ idp_path }}/conf/attribute-resolver.xml"
   when: pre_t is defined and pre_t > 3 
 
 - name: Remove attribute-resolver-full.xml from services.xml
@@ -152,6 +152,13 @@
     src: roles/shib3idp/files/services.xml-pre_t4
     dest: "{{ idp_path }}/conf/services.xml"
   when: pre_t is defined and pre_t > 3
+
+- name: Configure IdP attribute-resolver.xml-pre_t5
+  copy: 
+    src: roles/shib3idp/files/attribute-resolver.xml-pre_t5
+    dest: "{{ idp_path }}/conf/attribute-resolver.xml"
+  when: pre_t is defined and pre_t > 3 
+
   
 - name: Restart Tomcat7
   service: name=tomcat7 state=restarted
