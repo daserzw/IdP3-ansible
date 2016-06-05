@@ -27,8 +27,13 @@
 - name: Apply Directory config ldif
   command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f roles/slapd/files/directory-config.ldif"
 
+- name: Search Directory for memberof overlay
+  shell: "ldapsearch -QLLLY EXTERNAL -H ldapi:/// -b cn=schema,cn=config  olcOverlay=memberof"
+  register: memberof_overlay
+  
 - name: Add memberOf overlay to openldap
   command: "ldapadd -Y EXTERNAL -H ldapi:/// -f roles/slapd/files/memberof-overlay.ldif"
+  when: memberof_overlay.stdout == ""
 
 - name: Search Directory for eduperson schema
   shell: "ldapsearch -QLLLY EXTERNAL -H ldapi:/// -b cn=schema,cn=config  cn=*eduperson dn"
