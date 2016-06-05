@@ -69,6 +69,12 @@
   args:
     creates: /etc/apache2/sites-enabled/sp.example.org.conf
 
+- name: Copy content for sp.example.org pre_t2
+  copy:
+    src: roles/apache2/files/sp.example.org-pre_t2
+    dst: /var/www/sp.example.org
+  when: pre_t is defined and pre_t > 1
+    
 - name: Restart Apache2
   service: name=apache2 state=restarted enabled=yes
 
