@@ -274,7 +274,7 @@
      -->
 
     <!-- Example LDAP Connector -->
-    <!--
+
     <resolver:DataConnector id="myLDAP" xsi:type="dc:LDAPDirectory"
         ldapURL="%{idp.attribute.resolver.LDAP.ldapURL}"
         baseDN="%{idp.attribute.resolver.LDAP.baseDN}" 
@@ -290,6 +290,6 @@
             <sec:Certificate>%{idp.attribute.resolver.LDAP.trustCertificates}</sec:Certificate>
         </dc:StartTLSTrustCredential>
     </resolver:DataConnector>
-    -->
+
 
 </resolver:AttributeResolver>
