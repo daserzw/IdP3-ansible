@@ -35,14 +35,14 @@ PRIMARY KEY (context, id)
 
 CREATE TABLE IF NOT EXISTS RuoliOrganizzativi
 (
-id MEDIUMINT NOT NULL AUTO_INCREMENT,
+id MEDIUMINT NOT NULL,
 uid VARCHAR(255) NOT NULL,
 ruolo VARCHAR(255) NOT NULL,
 PRIMARY KEY (id)
 );
 
-INSERT INTO RuoliOrganizzativi (uid,ruolo) VALUES
-       ('mario', 'Tecnico'),('pino', 'Amministrativo'),
-       ('pina', 'Docente');
+INSERT INTO RuoliOrganizzativi (id, uid,ruolo) VALUES
+       (0, 'mario', 'Tecnico'),(1, 'pino', 'Amministrativo'),
+       (2, 'pina', 'Docente');
 
 
