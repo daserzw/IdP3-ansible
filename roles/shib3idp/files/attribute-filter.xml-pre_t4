@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AttributeFilterPolicyGroup id="ShibbolethFilterPolicy"
+        xmlns="urn:mace:shibboleth:2.0:afp"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:afp http://shibboleth.net/schema/idp/shibboleth-afp.xsd">
+
+    <!-- Release some attributes to an SP. -->
+    <AttributeFilterPolicy id="corso">
+        <PolicyRequirementRule xsi:type="Requester" value="https://sp.example.org/shibboleth" />
+
+        <!-- eduPersonPrincipalName,uid,mail released by default filter -->
+        <AttributeRule attributeID="eduPersonPrincipalName">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+        <AttributeRule attributeID="uid">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+        <AttributeRule attributeID="sn">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+        <AttributeRule attributeID="givenName">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+        <AttributeRule attributeID="mail">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+
+
+        <AttributeRule attributeID="schacHomeOrganization">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+        <AttributeRule attributeID="schacHomeOrganizationType">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+<!--
+        <AttributeRule attributeID="schacHomeOrganizationType">
+            <PermitValueRule xsi:type="Value" value="urn:schac:homeOrganizationType:int:school" />
+        </AttributeRule>
+-->
+
+        <AttributeRule attributeID="eduPersonAffiliation">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+        <AttributeRule attributeID="eduPersonScopedAffiliation">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+        <AttributeRule attributeID="addMail">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+<!-- Filter out some values
+        <AttributeRule attributeID="addMail">
+          <DenyValueRule xsi:type="AND">
+             <Rule xsi:type="ValueRegex" regex="^bar.*$" />
+             <Rule xsi:type="ValueRegex" regex="^.*bar$" />
+          </DenyValueRule>
+        </AttributeRule>
+-->
+
+        <AttributeRule attributeID="Group">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+<!-- Deny Internal attribute
+        <AttributeRule attributeID="Group">
+            <DenyValueRule xsi:type="ANY" />
+        </AttributeRule>
+-->
+
+        <AttributeRule attributeID="mappedGroup">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+<!-- Filter out some values 
+        <AttributeRule attributeID="mappedGroup">
+          <DenyValueRule xsi:type="ValueRegex" regex="some_string_to_add.*" />
+        </AttributeRule>
+-->
+
+        <AttributeRule attributeID="displayName">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+    </AttributeFilterPolicy>
+
+</AttributeFilterPolicyGroup>
+
+<!-- curl -sk https://localhost/idp/profile/admin/reload-service?id=shibboleth.AttributeFilterService | html2text -->
