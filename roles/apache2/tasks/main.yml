@@ -43,11 +43,6 @@
     src: roles/apache2/files/sp.example.org/
     dest: /var/www/html/sp.example.org/
 
-- name: Install SP Secure Location Index file 
-  copy:
-    src: roles/apache2/files/sp.example.org-pre_t2/index.html
-    dest: /var/www/html/sp.example.org/secure/index.html
-
 - name: Install Bootstrap Min CSS 
   copy:
     src: roles/apache2/files/bootstrap.min.css
