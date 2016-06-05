@@ -38,14 +38,14 @@
     src: roles/apache2/files/idp-index.html
     dest: /var/www/html/idp.example.org/index.html
 
-- name: Install SP Index file 
+- name: Site content for sp.example.org
   copy:
-    src: roles/apache2/files/sp-index.html
-    dest: /var/www/html/sp.example.org/index.html
+    src: roles/apache2/files/sp.example.org/
+    dest: /var/www/html/sp.example.org/
 
 - name: Install SP Secure Location Index file 
   copy:
-    src: roles/apache2/files/sp-secure-index.html
+    src: roles/apache2/files/sp.example.org-pre_t2/index.html
     dest: /var/www/html/sp.example.org/secure/index.html
 
 - name: Install Bootstrap Min CSS 
@@ -69,18 +69,6 @@
   args:
     creates: /etc/apache2/sites-enabled/sp.example.org.conf
 
-- name: Copy content of secure for sp.example.org pre_t2
-  copy:
-    src: roles/apache2/files/sp.example.org-pre_t2/secure
-    dst: /var/www/html/sp.example.org/
-  when: pre_t is defined and pre_t > 1
-
-- name: Copy new index.html for sp.example.org pre_t2
-  copy:
-    src: roles/apache2/files/sp.example.org-pre_t2/index.html
-    dst: /var/www/html/sp.example.org/index.html
-  when: pre_t is defined and pre_t > 1
-    
 - name: Restart Apache2
   service: name=apache2 state=restarted enabled=yes
 
