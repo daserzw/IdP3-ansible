@@ -138,7 +138,7 @@
 - name: Copy scripts in /opt/shibboleth-idp/conf
   copy:
     src: roles/shib3idp/files/scripts
-    dest: "{{ idp_path }}/conf
+    dest: "{{ idp_path }}/conf/"
     owner: tomcat7
 
 - name: Configure IdP attribute-filter.xml-pre_t4
