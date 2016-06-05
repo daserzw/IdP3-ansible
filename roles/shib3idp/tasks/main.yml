@@ -139,7 +139,10 @@
   file: name="{{ idp_path }}/conf/scripts" owner=tomcat7 state=directory
   
 - name: Copy scripts in /opt/shibboleth-idp/conf
-  copy: src="{{ item }}" dest="{{ idp_path }}/conf/scripts" owner=tomcat7
+  copy:
+    src: "roles/shib3idp/files/scripts/{{ item }}"
+    dest: "{{ idp_path }}/conf/scripts/{{ item }}"
+    owner: tomcat7
   with_items:
     - addMail.js
     - test.js
