@@ -43,6 +43,11 @@
     src: roles/apache2/files/sp.example.org/
     dest: /var/www/html/sp.example.org/
 
+- name: Remove old secure sp index file
+  file:
+    path: /var/www/html/sp.example.org/secure/index.html
+    state: absent
+    
 - name: Install Bootstrap Min CSS 
   copy:
     src: roles/apache2/files/bootstrap.min.css
