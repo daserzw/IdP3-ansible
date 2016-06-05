@@ -18,6 +18,11 @@
   file: path=/opt/shibboleth-idp state=absent
   when: cleanup is defined
 
+- name: Stat Shibboleth IdP dest dir in /opt
+  stat: path=/opt/shibboleth-idp
+  register: shib_dir_dest
+  when: pre_t is defined and pre_t > 1 
+
 - name: Copy template configuration for ldap.properties
   copy: 
     src: roles/shib3idp/files/ldap.properties-corso
@@ -36,11 +41,6 @@
     dest: "{{ idp_path }}/conf/global.xml"
   when: pre_t is defined and pre_t > 0
 
-- name: Stat Shibboleth IdP dest dir in /opt
-  stat: path=/opt/shibboleth-idp
-  register: shib_dir_dest
-  when: pre_t is defined and pre_t > 1 
-  
 - name: Prepare properties for Shibboleth IdP install
   template: 
     src: roles/shib3idp/templates/shib-install.properties 
@@ -137,6 +137,7 @@
 
 - name: Create scripts directory in /opt/shibboleth-idp/conf
   file: name="{{ idp_path }}/conf/scripts" owner=tomcat7 state=directory
+  when: pre_t is defined and pre_t > 3
   
 - name: Copy scripts in /opt/shibboleth-idp/conf
   copy:
