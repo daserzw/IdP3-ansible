@@ -2,8 +2,11 @@
 # Note, this doesn't apply to the use of JAAS
 
 ## Authenticator strategy, either anonSearchAuthenticator, bindSearchAuthenticator, directAuthenticator, adAuthenticator
-#idp.authn.LDAP.authenticator                   = anonSearchAuthenticator
-idp.authn.LDAP.authenticator                    = bindSearchAuthenticator
+
+########### SCOMMENTA  authenticator NECESSARIO ############
+
+#idp.authn.LDAP.authenticator                    = anonSearchAuthenticator
+#idp.authn.LDAP.authenticator                    = bindSearchAuthenticator
 
 ## Connection properties ##
 idp.authn.LDAP.ldapURL                          = ldap://idp.example.org:389

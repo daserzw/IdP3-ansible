@@ -3,7 +3,7 @@
     src: roles/tomcat7/templates/server.xml
     dest: /etc/tomcat7/server.xml
 
-- name: /etc/default/tomcat7 with urandom and 1512m heap mem
+- name: /etc/default/tomcat7 with urandom and 384m heap mem
   template:
     src: roles/tomcat7/templates/tomcat7
     dest: /etc/default/tomcat7

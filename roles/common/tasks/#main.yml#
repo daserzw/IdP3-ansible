@@ -1,0 +1,59 @@
+- name: Configure /etc/hosts
+  template: src=roles/common/templates/hosts dest=/etc/hosts
+
+- name: Configure /etc/environment
+  template: src=roles/common/templates/environment dest=/etc/environment
+
+- name: Add GARR apt sources
+  template: src=roles/common/templates/sources.list dest=/etc/apt/sources.list
+
+- name: Update apt cache
+  apt: update_cache=yes
+  tags: online
+#  apt: update_cache=yes cache_valid_time=36000
+
+- name: Uninstall slapd
+  apt: name=slapd state=absent purge=yes
+  when: cleanup is d
+
+- name: Uninstall libapache2-mod-shib2
+  apt: name=libapache2-mod-shib2 state=absent purge=yes
+  when: cleanup is defined
+
+- name: Remove /etc/shibboleth dir
+  file: path=/etc/shibboleth state=absent
+  when: cleanup is defined
+
+- name: Install apt packages
+  apt: name={{ item }} state=present
+  with_items:
+    - html2text
+    - vim
+    - ntp
+    - apache2
+    - openjdk-7-jdk
+    - libjstl1.1-java
+    - tomcat7
+    - libmysql-java
+    - libapache2-mod-shib2
+    - libapache2-mod-php5
+  tags: online
+
+- name: Install CA Certificate
+  copy: src=roles/common/files/cacert.pem dest=/etc/ssl/certs/cacert.pem
+
+- name: Install CA Key
+  copy: src=roles/common/files/cakey.pem dest=/etc/ssl/private mode=0600
+
+- name: Install IdP Certificate
+  copy: src=roles/common/files/idp.example.org-cert.pem dest=/etc/ssl/certs/idp.example.org-cert.pem
+
+- name: Install IdP Key
+  copy: src=roles/common/files/idp.example.org-key.pem dest=/etc/ssl/private/idp.example.org-key.pem group=ssl-cert mode=0640
+
+- name: Install SP Certificate
+  copy: src=roles/common/files/sp.example.org-cert.pem dest=/etc/ssl/certs/sp.example.org-cert.pem
+
+- name: Install SP Key
+  copy: src=roles/common/files/sp.example.org-key.pem dest=/etc/ssl/private/sp.example.org-key.pem group=ssl-cert mode=0640
+

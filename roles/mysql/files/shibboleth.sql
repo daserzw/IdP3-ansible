@@ -33,3 +33,16 @@ version BIGINT(20) NOT NULL,
 PRIMARY KEY (context, id)
 );
 
+CREATE TABLE IF NOT EXISTS RuoliOrganizzativi
+(
+id MEDIUMINT NOT NULL,
+uid VARCHAR(255) NOT NULL,
+ruolo VARCHAR(255) NOT NULL,
+PRIMARY KEY (id)
+);
+
+INSERT INTO RuoliOrganizzativi (uid,ruolo) VALUES
+       ('mario', 'Tecnico'),('pino', 'Amministrativo'),
+       ('pina', 'Docente');
+
+
