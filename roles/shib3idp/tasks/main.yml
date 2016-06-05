@@ -24,10 +24,10 @@
     dest: "{{ idp_path }}/conf/ldap.properties"
   when: pre_t is defined and pre_t > 0
 
-- name: Copy template configuration saml.properties
+- name: Copy template configuration saml-nameid.properties
   copy: 
-    src: roles/shib3idp/files/saml.properties-corso
-    dest: "{{ idp_path }}/conf/saml.properties"
+    src: roles/shib3idp/files/saml-nameid.properties-corso
+    dest: "{{ idp_path }}/conf/saml-nameid.properties"
   when: pre_t is defined and pre_t > 0
 
 - name: Copy template configuration global.xml
