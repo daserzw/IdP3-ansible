@@ -135,12 +135,14 @@
     dest: "{{ idp_path }}/conf/services.xml"
   when: pre_t is defined and pre_t > 2 
 
+- name: Create scripts directory in /opt/shibboleth-idp/conf
+  file: name="{{ idp_path }}/conf/scripts" owner=tomcat7 state=directory
+  
 - name: Copy scripts in /opt/shibboleth-idp/conf
-  copy:
-    src: roles/shib3idp/files/scripts
-    dest: "{{ idp_path }}/conf/scripts"
-    directory_mode: yes
-    owner: tomcat7
+  copy: src="{{ item }}" dest="{{ idp_path }}/conf/scripts" owner=tomcat7
+  with_items:
+    - addMail.js
+    - test.js
   when: pre_t is defined and pre_t > 3
 
 - name: Configure IdP attribute-filter.xml-pre_t4
