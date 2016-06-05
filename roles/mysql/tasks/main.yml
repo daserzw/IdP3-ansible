@@ -26,5 +26,5 @@
   register: ruoli_org
 
 - name: Load table RuoliOrganizzativi
-  shell: mysql -u root --password=password < roles/mysql/files/insert-ruoliorganizzativi.sql
+  shell: mysql -u root --password=password shibboleth < roles/mysql/files/insert-ruoliorganizzativi.sql
   when: ruoli_org.stdout == ""
