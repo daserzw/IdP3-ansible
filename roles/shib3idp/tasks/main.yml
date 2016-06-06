@@ -127,7 +127,7 @@
   copy: 
     src: roles/shib3idp/files/attribute-resolver-full.xml
     dest: "{{ idp_path }}/conf/attribute-resolver.xml"
-  when: pre_t is defined and pre_t > 3 
+  when: pre_t is defined and pre_t > 2 
 
 - name: Add attribute-resolver-full.xml to services.xml
   copy: 
