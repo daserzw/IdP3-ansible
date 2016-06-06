@@ -15,7 +15,7 @@
                             urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
 
   <resolver:AttributeDefinition xsi:type="ad:Simple" id="myRuolo" sourceAttributeID="myRuolo">
-        <resolver:Dependency ref="VEDI questo file voce resolver:DataConnector->id" />
+        <resolver:Dependency ref="VEDI resolver:DataConnector->id" />
         <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:x-corsoidp:dir:attribute-def:myRuolo" encodeType="false" />
         <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.99999999.1.1.1.1" friendlyName="myRuolo" encodeType="false" />
     </resolver:AttributeDefinition>
