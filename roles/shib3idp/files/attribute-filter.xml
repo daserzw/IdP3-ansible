@@ -29,7 +29,7 @@
             <PermitValueRule xsi:type="ANY" />
         </AttributeRule>
 
-	<AttributeRule attributeID="myRuolo">
+	<AttributeRule attributeID="VEDI id ATTRIBUTO DEFINITO in attribute-resolver-myRdbms.xml">
             <PermitValueRule xsi:type="ANY" />
         </AttributeRule>
 

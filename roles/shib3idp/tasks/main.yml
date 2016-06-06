@@ -141,7 +141,13 @@
     dest: "{{ idp_path }}/conf/"
     owner: tomcat7
 
-- name: Configure IdP attribute-filter.xml-pre_t4
+- name: Add IdP attribute-resolver-myRdbms.xml-template
+  copy: 
+    src: roles/shib3idp/files/attribute-resolver-myRdbms.xml-template
+    dest: "{{ idp_path }}/conf/attribute-resolver-myRdbms.xml"
+  when: pre_t is defined and pre_t > 3
+    
+- name: Configure IdP attribute-filter.xml pre_t3 and pre_t4
   copy: 
     src: roles/shib3idp/files/attribute-filter.xml-pre_t4
     dest: "{{ idp_path }}/conf/attribute-filter.xml"
