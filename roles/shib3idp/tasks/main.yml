@@ -151,7 +151,7 @@
   copy: 
     src: roles/shib3idp/files/attribute-filter.xml-pre_t4
     dest: "{{ idp_path }}/conf/attribute-filter.xml"
-  when: pre_t is defined and pre_t > 2
+  when: pre_t is defined and pre_t > 3
 
 - name: Configure IdP attribute-resolver.xml-pre_t4
   copy: 

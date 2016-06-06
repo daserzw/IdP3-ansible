@@ -29,7 +29,9 @@
             <PermitValueRule xsi:type="ANY" />
         </AttributeRule>
 
-
+	<AttributeRule attributeID="myRuolo">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
 
         <AttributeRule attributeID="schacHomeOrganization">
             <PermitValueRule xsi:type="ANY" />
