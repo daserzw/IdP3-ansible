@@ -1,5 +1,5 @@
 - name: Stat Shibboleth IdP tarball in /opt 
-  stat: path=/opt/shibboleth-identity-provider-3.2.1.tar.gz
+  stat: path=/opt/shibboleth-identity-provider-3.3.0.tar.gz
   register: shib_tarball
 
 - name: Download Shibboleth IdP
@@ -7,11 +7,11 @@
   when: shib_tarball.stat.exists == False
 
 - name: Stat Shibboleth IdP source dir in /opt 
-  stat: path=/opt/shibboleth-identity-provider-3.2.1
+  stat: path=/opt/shibboleth-identity-provider-3.3.0
   register: shib_dir_source
   
 - name: Unarchive Shibboleth IdP
-  unarchive: src=/opt/shibboleth-identity-provider-3.2.1.tar.gz dest=/opt
+  unarchive: src=/opt/shibboleth-identity-provider-3.3.0.tar.gz dest=/opt
   when: shib_dir_source.stat.exists == False and pre_t is defined and pre_t > 1 
 
 - name: Cleanup Shibboleth IdP Install
@@ -51,11 +51,11 @@
   environment: 
     JAVA_HOME: "{{ java_home }}"
   command: |
-    /opt/shibboleth-identity-provider-3.2.1/bin/install.sh \
+    /opt/shibboleth-identity-provider-3.3.0/bin/install.sh \
     -Didp.sealer.password={{ idp_pw }} \
     -Didp.keystore.password={{ idp_pw }} \
     -Didp.scope={{ domain }} \
-    -Didp.src.dir=/opt/shibboleth-identity-provider-3.2.1 \
+    -Didp.src.dir=/opt/shibboleth-identity-provider-3.3.0 \
     -Didp.host.name={{ idp_fqdn }} \
     -Didp.target.dir=/opt/shibboleth-idp \
     -Didp.merge.properties=/tmp/shib-install.properties
