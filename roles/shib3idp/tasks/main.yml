@@ -21,7 +21,6 @@
 - name: Stat Shibboleth IdP dest dir in /opt
   stat: path=/opt/shibboleth-idp/metadata
   register: shib_dir_dest
-  when: pre_t is defined and pre_t > 1 
 
 - name: Copy template configuration for ldap.properties
   copy: 
