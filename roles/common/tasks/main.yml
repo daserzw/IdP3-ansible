@@ -8,9 +8,9 @@
   template: src=roles/common/templates/sources.list dest=/etc/apt/sources.list
 
 - name: Update apt cache
-  apt: update_cache=yes
+#  apt: update_cache=yes
+  apt: update_cache=yes cache_valid_time=86400
   tags: online
-#  apt: update_cache=yes cache_valid_time=36000
 
 - name: Uninstall slapd
   apt: name=slapd state=absent purge=yes
